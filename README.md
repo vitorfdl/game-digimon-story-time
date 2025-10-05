@@ -2,7 +2,7 @@
 
 A responsive companion app for **Digimon Time Stranger** that helps players research Digimon data, plan evolution paths, and assemble squads on any device. All game info is fetched on demand from [Grindosaur](https://www.grindosaur.com/en/games/digimon-story-time-stranger/digimon/), parsed with Cheerio, and rendered with modern React tooling.
 
-![Team Builder screenshot](https://github.com/user-attachments/assets/02578e29-b801-4148-921a-8854c566eb7c)
+<img width="1200" alt="image" src="https://github.com/user-attachments/assets/a0c180c9-c426-48ab-a5e0-3549c94fb721" />
 
 ---
 
