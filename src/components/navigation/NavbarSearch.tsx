@@ -1,11 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAtomValue } from "jotai";
 import { useLocation, useMatch, useNavigate } from "react-router-dom";
 import { Search, Loader2 } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import { digimonListAtom } from "@/store/atoms";
+import { cn } from "@/lib/utils";
+import { useDigimonSearch } from "@/hooks/use-digimon-search";
 
 type HighlightDirection = "up" | "down";
 
@@ -21,22 +22,7 @@ export default function NavbarSearch() {
   const match = useMatch("/digimon/:slug");
   const activeSlug = match?.params.slug ?? (location.pathname === "/" ? list[0]?.slug ?? null : null);
 
-  const filtered = useMemo(() => {
-    const trimmed = query.trim().toLowerCase();
-
-    if (!trimmed) {
-      return list.slice(0, 8);
-    }
-
-    return list
-      .filter((entry) => {
-        const nameMatch = entry.name.toLowerCase().includes(trimmed);
-        const numberMatch = entry.number?.toLowerCase().includes(trimmed);
-        const attributeMatch = entry.attribute?.toLowerCase().includes(trimmed);
-        return nameMatch || numberMatch || attributeMatch;
-      })
-      .slice(0, 8);
-  }, [list, query]);
+  const filtered = useDigimonSearch(list, query, { limit: 8 });
 
   useEffect(() => {
     setActiveIndex(0);

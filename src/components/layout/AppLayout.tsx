@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
-import { Users, Github, History } from 'lucide-react'
+import { Users, Github, History, Swords } from 'lucide-react'
 import {
   SidebarProvider,
   Sidebar,
@@ -27,6 +27,9 @@ function getPageTitle(pathname: string): string {
   if (pathname === '/' || pathname.startsWith('/digimon')) {
     return 'Digimons'
   }
+  if (pathname.startsWith('/team-builder')) {
+    return 'Team Builder'
+  }
   return 'Digimon Time Stranger'
 }
 
@@ -35,6 +38,7 @@ export default function AppLayout() {
   const repo = useRepoUpdate()
   const faviconUrl = `${import.meta.env.BASE_URL}favicon/favicon.svg`
   const digimonActive = location.pathname === '/' || location.pathname.startsWith('/digimon')
+  const teamBuilderActive = location.pathname.startsWith('/team-builder')
   return (
     <SidebarProvider>
       <Sidebar collapsible="icon">
@@ -59,6 +63,14 @@ export default function AppLayout() {
                     <NavLink to="/">
                       <Users />
                       <span>Digimons</span>
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild isActive={teamBuilderActive}>
+                    <NavLink to="/team-builder">
+                      <Swords />
+                      <span>Team Builder</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -89,7 +101,6 @@ export default function AppLayout() {
           <div className="h-10 w-px bg-border/70" />
           <div className="flex flex-1 flex-col justify-center">
             <span className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground/80">{getPageTitle(location.pathname)}</span>
-            <h1 className="text-lg font-semibold leading-tight text-foreground">Digimon Time Stranger Compendium</h1>
           </div>
           <Suspense
             fallback={
@@ -134,5 +145,4 @@ export default function AppLayout() {
     </SidebarProvider>
   )
 }
-
 

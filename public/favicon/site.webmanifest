@@ -1,6 +1,6 @@
 {
-  "name": "SoS: GB Sheet",
-  "short_name": "SoSGB",
+  "name": "DigimonSTSheet",
+  "short_name": "DStoryTime",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#4a4910",
-  "background_color": "#ffffff",
+  "theme_color": "#242424",
+  "background_color": "#232323",
   "display": "standalone"
 }
