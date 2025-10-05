@@ -1,5 +1,5 @@
+import { ClipboardCheck, Download, Upload } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Download, Upload, ClipboardCheck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,7 +26,11 @@ type TeamImportExportControlsProps = {
 
 type DialogMode = "import" | "export";
 
-export function TeamImportExportControls({ slots, onImport, className }: TeamImportExportControlsProps) {
+export function TeamImportExportControls({
+	slots,
+	onImport,
+	className,
+}: TeamImportExportControlsProps) {
 	const [open, setOpen] = useState(false);
 	const [mode, setMode] = useState<DialogMode>("export");
 	const [value, setValue] = useState("");
@@ -71,12 +75,12 @@ export function TeamImportExportControls({ slots, onImport, className }: TeamImp
 					: null;
 
 			if (!payload) {
-				throw new Error("Expected an array of slots or { \"slots\": [...] }");
+				throw new Error('Expected an array of slots or { "slots": [...] }');
 			}
 
 			const sanitized: TeamSlot[] = payload
-				.map((slot) => sanitizeSlot(slot))
-				.filter((slot): slot is TeamSlot => slot !== null);
+				.map((slot: unknown) => sanitizeSlot(slot))
+				.filter((slot: TeamSlot | null): slot is TeamSlot => slot !== null);
 
 			if (!sanitized.length) {
 				throw new Error("No valid slots found in the provided JSON.");
@@ -85,7 +89,9 @@ export function TeamImportExportControls({ slots, onImport, className }: TeamImp
 			onImport(sanitized);
 			setOpen(false);
 		} catch (cause) {
-			setError(cause instanceof Error ? cause.message : "Unable to import JSON");
+			setError(
+				cause instanceof Error ? cause.message : "Unable to import JSON",
+			);
 		}
 	};
 
@@ -136,7 +142,10 @@ export function TeamImportExportControls({ slots, onImport, className }: TeamImp
 					}
 				}}
 			>
-				<DialogContent className="max-w-xl rounded-3xl border border-border/60 bg-background/95 p-6 shadow-2xl backdrop-blur" showCloseButton={false}>
+				<DialogContent
+					className="max-w-xl rounded-3xl border border-border/60 bg-background/95 p-6 shadow-2xl backdrop-blur"
+					showCloseButton={false}
+				>
 					<DialogHeader className="items-start text-left">
 						<DialogTitle className="text-lg font-semibold text-foreground">
 							{mode === "import" ? "Import Team" : "Export Team"}
@@ -158,9 +167,7 @@ export function TeamImportExportControls({ slots, onImport, className }: TeamImp
 							placeholder="Paste your exported JSON here"
 							spellCheck={false}
 						/>
-						{error ? (
-							<p className="text-sm text-destructive">{error}</p>
-						) : null}
+						{error ? <p className="text-sm text-destructive">{error}</p> : null}
 					</div>
 					<DialogFooter className="flex flex-col gap-2 sm:flex-row sm:justify-between">
 						<div className="flex items-center gap-2">
@@ -170,7 +177,12 @@ export function TeamImportExportControls({ slots, onImport, className }: TeamImp
 						</div>
 						<div className="flex items-center gap-2">
 							{mode === "export" ? (
-								<Button type="button" variant="outline" onClick={handleCopy} className="gap-2">
+								<Button
+									type="button"
+									variant="outline"
+									onClick={handleCopy}
+									className="gap-2"
+								>
 									<ClipboardCheck className="size-4" />
 									{copied ? "Copied" : "Copy JSON"}
 								</Button>
@@ -194,14 +206,18 @@ function sanitizeSlot(candidate: unknown): TeamSlot | null {
 
 	const source = candidate as Partial<TeamSlot> & Record<string, unknown>;
 	const forms = Array.isArray(source.forms)
-		? source.forms.filter((slug): slug is string => typeof slug === "string" && slug.trim().length > 0)
+		? source.forms.filter(
+				(slug): slug is string =>
+					typeof slug === "string" && slug.trim().length > 0,
+			)
 		: [];
 
 	if (forms.length === 0) {
 		return null;
 	}
 
-	const personality = typeof source.personality === "string" ? source.personality : null;
+	const personality =
+		typeof source.personality === "string" ? source.personality : null;
 	const skill = sanitizeSkill(source.skill);
 
 	return {
@@ -217,12 +233,16 @@ function sanitizeSkill(candidate: unknown): TeamSlot["skill"] {
 		return null;
 	}
 
-	const source = candidate as Partial<TeamSlot["skill"]> & Record<string, unknown>;
+	const source = candidate as Partial<TeamSlot["skill"]> &
+		Record<string, unknown>;
 	if (typeof source?.name !== "string" || !source.name.trim()) {
 		return null;
 	}
 
-	const origin = source.origin === "category" || source.origin === "personality" ? source.origin : "personality";
+	const origin =
+		source.origin === "category" || source.origin === "personality"
+			? source.origin
+			: "personality";
 
 	return {
 		name: source.name,

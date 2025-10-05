@@ -112,96 +112,96 @@ export function TeamSlotCard({ slot, onUpdate, onRemove }: TeamSlotCardProps) {
 	return (
 		<>
 			<Card
-			ref={setNodeRef}
-			style={style}
-			className={cn(
-				"relative overflow-hidden border border-border/50 bg-card/70 backdrop-blur transition-shadow",
-				isDragging
-					? "shadow-2xl"
-					: "shadow-[0_32px_80px_-70px_theme(colors.primary/80%)]",
-			)}
-			onClick={() => setActiveCardId(slot.id)}
-		>
-			<CardContent className="flex flex-col gap-2">
-				<div className="flex flex-wrap items-start gap-3">
-					<button
-						type="button"
-						className="flex size-9 items-center justify-center rounded-full border border-border/70 bg-background/90 text-muted-foreground transition hover:border-primary/60 hover:text-primary"
-						{...attributes}
-						{...listeners}
-					>
-						<GripVertical className="size-4" />
-					</button>
-
-					<div className="flex min-w-0 flex-1 items-center justify-between gap-3">
-						<div className="flex items-center rounded-2xl border border-border/40 bg-muted/20 px-3 py-1">
-							<PersonalitySkillSelector
-								value={slot.personality}
-								onPersonalityChange={handlePersonalityChange}
-								skill={slot.skill ?? null}
-								onSkillChange={handleSkillChange}
-								categories={categories}
-							/>
-						</div>
-
-						<Button
-							variant="destructive"
-							size="icon"
-							onClick={() => setConfirmOpen(true)}
-							aria-label="Remove Digimon"
-							className="shrink-0"
+				ref={setNodeRef}
+				style={style}
+				className={cn(
+					"relative overflow-hidden border border-border/50 bg-card/70 backdrop-blur transition-shadow",
+					isDragging
+						? "shadow-2xl"
+						: "shadow-[0_32px_80px_-70px_theme(colors.primary/80%)]",
+				)}
+				onClick={() => setActiveCardId(slot.id)}
+			>
+				<CardContent className="flex flex-col gap-2">
+					<div className="flex flex-wrap items-start gap-3">
+						<button
+							type="button"
+							className="flex size-9 items-center justify-center rounded-full border border-border/70 bg-background/90 text-muted-foreground transition hover:border-primary/60 hover:text-primary"
+							{...attributes}
+							{...listeners}
 						>
-							<Trash2 className="size-4" />
-						</Button>
-					</div>
-				</div>
+							<GripVertical className="size-4" />
+						</button>
 
-				<div className="flex flex-wrap items-center justify-start gap-1 overflow-x-auto">
-					{slot.forms.map((slug, index) => (
-						<>
-							<TeamFormPill
-								key={`${slot.id}-${slug}-${index}`}
-								slug={slug}
-								isActive={focusedIndex === index && activeCardId === slot.id}
-								isBase={index === 0}
-								onSelect={() => handleFocusStage(index)}
-								onRemove={() => handleRemoveStage(index)}
-							/>
-							{index < slot.forms.length - 1 && (
-								<ChevronsRight
-									key={`arrow-${slot.id}-${index}`}
-									className="mx-1 size-5 text-muted-foreground"
-									aria-hidden="true"
+						<div className="flex min-w-0 flex-1 items-center justify-between gap-3">
+							<div className="flex items-center rounded-2xl border border-border/40 bg-muted/20 px-3 py-1">
+								<PersonalitySkillSelector
+									value={slot.personality}
+									onPersonalityChange={handlePersonalityChange}
+									skill={slot.skill ?? null}
+									onSkillChange={handleSkillChange}
+									categories={categories}
 								/>
-							)}
-						</>
-					))}
-				</div>
+							</div>
 
-				{forwardEntries.length ? (
-					<div className="grid gap-3 rounded-2xl border border-border/40 bg-muted/10 p-4">
-						<header className="space-y-1">
-							<p className="text-xs font-semibold uppercase tracking-[0.26em] text-muted-foreground">
-								Evolution Options
-							</p>
-							<p className="text-xs text-muted-foreground/80">
-								{activeDetails.name ?? activeSlug}
-							</p>
-						</header>
-						<div className="grid gap-3 md:grid-cols-2">
-							{forwardEntries.map((entry) => (
-								<EvolutionOptionCard
-									key={`${slot.id}-${entry.slug ?? entry.name}`}
-									entry={entry}
-									onSelect={(slug) => handleSelectEvolution(slug)}
-									badgeLabel="Add"
-									disabled={!entry.slug}
-								/>
-							))}
+							<Button
+								variant="destructive"
+								size="icon"
+								onClick={() => setConfirmOpen(true)}
+								aria-label="Remove Digimon"
+								className="shrink-0"
+							>
+								<Trash2 className="size-4" />
+							</Button>
 						</div>
 					</div>
-				) : null}
-			</CardContent>
+
+					<div className="flex flex-wrap items-center justify-start gap-1 overflow-x-auto">
+						{slot.forms.map((slug, index) => (
+							<>
+								<TeamFormPill
+									key={`${slot.id}-${slug}-${index}`}
+									slug={slug}
+									isActive={focusedIndex === index && activeCardId === slot.id}
+									isBase={index === 0}
+									onSelect={() => handleFocusStage(index)}
+									onRemove={() => handleRemoveStage(index)}
+								/>
+								{index < slot.forms.length - 1 && (
+									<ChevronsRight
+										key={`arrow-${slot.id}-${index}`}
+										className="mx-1 size-5 text-muted-foreground"
+										aria-hidden="true"
+									/>
+								)}
+							</>
+						))}
+					</div>
+
+					{forwardEntries.length ? (
+						<div className="grid gap-3 rounded-2xl border border-border/40 bg-muted/10 p-4">
+							<header className="space-y-1">
+								<p className="text-xs font-semibold uppercase tracking-[0.26em] text-muted-foreground">
+									Evolution Options
+								</p>
+								<p className="text-xs text-muted-foreground/80">
+									{activeDetails.name ?? activeSlug}
+								</p>
+							</header>
+							<div className="grid gap-3 md:grid-cols-2">
+								{forwardEntries.map((entry) => (
+									<EvolutionOptionCard
+										key={`${slot.id}-${entry.slug ?? entry.name}`}
+										entry={entry}
+										onSelect={(slug) => handleSelectEvolution(slug)}
+										badgeLabel="Add"
+										disabled={!entry.slug}
+									/>
+								))}
+							</div>
+						</div>
+					) : null}
+				</CardContent>
 			</Card>
 			<Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
 				<DialogContent
@@ -213,7 +213,8 @@ export function TeamSlotCard({ slot, onUpdate, onRemove }: TeamSlotCardProps) {
 							Remove Digimon?
 						</DialogTitle>
 						<DialogDescription className="text-sm text-muted-foreground">
-							This removes the entire evolution path from your team. You can add it back whenever you like.
+							This removes the entire evolution path from your team. You can add
+							it back whenever you like.
 						</DialogDescription>
 					</DialogHeader>
 					<DialogFooter className="flex items-center justify-end gap-2">

@@ -1,5 +1,5 @@
-import { fetchDigimonDetails, fetchDigimonList } from "./lib/grindosaur"
+import { fetchDigimonDetails, fetchDigimonList } from "./lib/grindosaur";
 
 fetchDigimonDetails("birdramon").then((digimonList) => {
-  console.log(digimonList)
-})
+	console.log(digimonList);
+});

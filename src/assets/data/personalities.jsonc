@@ -1,308 +1,308 @@
 /*
-* Personalities data for Digimon Time Stranger.
-* 
-* Categories:
-* - Personalities are divided in 4 categories: Philanthropy, Valor, Wisdom, and Amicability.
-* - Each category contribute with increase to one stat and 2 skills.
-*
-* Personalities:
-* - Each category contain 4 personalities. Digimon will have one of those personalities.
-* - Each personality contribute with increase to another stat and 2 skills.
-*
-* If a digimon have the personality Adoring, it will have:
-* - Boost to SPI and DEF, which is the stat of the category and the stat of the personality.
-* - Will have one skill, choosen from the category skills or the personality skills.
-*/
+ * Personalities data for Digimon Time Stranger.
+ *
+ * Categories:
+ * - Personalities are divided in 4 categories: Philanthropy, Valor, Wisdom, and Amicability.
+ * - Each category contribute with increase to one stat and 2 skills.
+ *
+ * Personalities:
+ * - Each category contain 4 personalities. Digimon will have one of those personalities.
+ * - Each personality contribute with increase to another stat and 2 skills.
+ *
+ * If a digimon have the personality Adoring, it will have:
+ * - Boost to SPI and DEF, which is the stat of the category and the stat of the personality.
+ * - Will have one skill, choosen from the category skills or the personality skills.
+ */
 
 {
-  "categories": [
-    {
-      "name": "Philanthropy",
-      "stat": "SPI",
-      "personalities": [
-        {
-          "name": "Adoring",
-          "stat": "DEF",
-          "skills": [
-            {
-              "name": "Follow-up",
-              "effect": "Always acts last."
-            },
-            {
-              "name": "Prayer for Aid",
-              "effect": "Slightly recovers HP of all allies at the start of each round."
-            }
-          ]
-        },
-        {
-          "name": "Devoted",
-          "stat": "INT",
-          "skills": [
-            {
-              "name": "First Aid",
-              "effect": "Also removes target's injury when using skills to recover an ally's HP."
-            },
-            {
-              "name": "Stout Spirit",
-              "effect": "Boosts SPI based on user's HP."
-            }
-          ]
-        },
-        {
-          "name": "Tolerant",
-          "stat": "SP",
-          "skills": [
-            {
-              "name": "Steadfast Heart",
-              "effect": "Boosts DEF when HP is 90% or lower (the lower the HP, more DEF boost)."
-            },
-            {
-              "name": "Rally Blessing",
-              "effect": "Revives with 50% HP when KO'd in battle (once per battle)."
-            }
-          ]
-        },
-        {
-          "name": "Overprotective",
-          "stat": "HP",
-          "skills": [
-            {
-              "name": "First in Line",
-              "effect": "Always acts first."
-            },
-            {
-              "name": "Great Embrace",
-              "effect": "Overheals up to 200% of target's MAX HP when using recovery skills."
-            }
-          ]
-        }
-      ],
-      "category_skills": [
-        {
-          "name": "Healing Wisdom",
-          "effect": "Reduces SP cost for recovery skills by 10%."
-        },
-        {
-          "name": "SP Supplement",
-          "effect": "Also recovers 10% of target’s Max SP when using skills to recover an ally’s HP."
-        }
-      ]
-    },
-    {
-      "name": "Valor",
-      "stat": "ATK",
-      "personalities": [
-        {
-          "name": "Zealous",
-          "stat": "SPD",
-          "skills": [
-            {
-              "name": "First in Line",
-              "effect": "Always acts first."
-            },
-            {
-              "name": "Fast Break",
-              "effect": "Boost ATK for the first 3 rounds (the earlier the round, more ATK boost)."
-            }
-          ]
-        },
-        {
-          "name": "Brave",
-          "stat": "SP",
-          "skills": [
-            {
-              "name": "Extra Strikes Tech",
-              "effect": "Performs an additional attack when extra strikes is activated."
-            },
-            {
-              "name": "Vitality Theft",
-              "effect": "Recovers HP equal to 10% of physical attack skill damage dealt."
-            }
-          ]
-        },
-        {
-          "name": "Reckless",
-          "stat": "HP",
-          "skills": [
-            {
-              "name": "Steadfast Might",
-              "effect": "Boosts ATK when HP is 90% or lower (the lower the HP, more ATK boost)."
-            },
-            {
-              "name": "Counter",
-              "effect": "Chance of countering with an attack when being attacked (better chance with lower HP)."
-            }
-          ]
-        },
-        {
-          "name": "Daring",
-          "stat": "DEF",
-          "skills": [
-            {
-              "name": "Stout Defense",
-              "effect": "Boosts DEF based on user's HP."
-            },
-            {
-              "name": "Strategic Order",
-              "effect": "Boosts CRT Rate by 5%."
-            }
-          ]
-        }
-      ],
-      "category_skills": [
-        {
-          "name": "Warrior Wisdom",
-          "effect": "Reduce SP cost for physical attack skills by 10%."
-        },
-        {
-          "name": "Song of Triumph",
-          "effect": "Slightly boosts CP gained."
-        }
-      ]
-    },
-    {
-      "name": "Wisdom",
-      "stat": "INT",
-      "personalities": [
-        {
-          "name": "Enlightened",
-          "stat": "SP",
-          "skills": [
-            {
-              "name": "Intense Focus",
-              "effect": "Boosts INT for the first 3 rounds (the earlier, more INT boost)."
-            },
-            {
-              "name": "Haymaker",
-              "effect": "Boosts CRT damage by 20%."
-            }
-          ]
-        },
-        {
-          "name": "Sly",
-          "stat": "HP",
-          "skills": [
-            {
-              "name": "Meditation",
-              "effect": "Boosts INT from round 4 onward (the longer, more INT boost)."
-            },
-            {
-              "name": "Combo Magic",
-              "effect": "Chance to reuse skill when using a magic attack skill (better chance at lower HP)."
-            }
-          ]
-        },
-        {
-          "name": "Astute",
-          "stat": "SPD",
-          "skills": [
-            {
-              "name": "Steadfast Emotion",
-              "effect": "Boosts INT when HP is 90% or lower (the lower the HP, the more INT boost)."
-            },
-            {
-              "name": "Magic Theft",
-              "effect": "Recovers SP equal to 10% of magic attack skill damage dealt."
-            }
-          ]
-        },
-        {
-          "name": "Strategic",
-          "stat": "SPI",
-          "skills": [
-            {
-              "name": "Follow Up",
-              "effect": "Always acts last."
-            },
-            {
-              "name": "Soothing Song",
-              "effect": "Slightly recovers SP of all allies at the start of each round."
-            }
-          ]
-        }
-      ],
-      "category_skills": [
-        {
-          "name": "Secret Sage Art",
-          "effect": "Attacking deals magic damage."
-        },
-        {
-          "name": "Magical Wisdom",
-          "effect": "Reduces SP cost for magic attack skills by 10%."
-        }
-      ]
-    },
-    {
-      "name": "Amicability",
-      "stat": "DEF",
-      "personalities": [
-        {
-          "name": "Opportunistic",
-          "stat": "SPI",
-          "skills": [
-            {
-              "name": "Slow Started",
-              "effect": "Boosts ATK from round 4 onwards (the longer, more ATK boost)."
-            },
-            {
-              "name": "Planning Ahead",
-              "effect": "At start of battle, reduce DEF and SPI for all enemies greater than total bonds of battle members."
-            }
-          ]
-        },
-        {
-          "name": "Friendly",
-          "stat": "ATK",
-          "skills": [
-            {
-              "name": "Strategic Order",
-              "effect": "Boosts CRT Rate by 5%."
-            },
-            {
-              "name": "Fortifying Charge",
-              "effect": "Also boosts all of the target's stats when using skills to recover an ally's HP."
-            }
-          ]
-        },
-        {
-          "name": "Sociable",
-          "stat": "SP",
-          "skills": [
-            {
-              "name": "Booing",
-              "effect": "Extends the duration of debuff effects applied by the user's skills by 2 turns."
-            },
-            {
-              "name": "Weak Point Blitz",
-              "effect": "Boost damage dealt by the user when hitting an enemy's weak point after an ally does."
-            }
-          ]
-        },
-        {
-          "name": "Compassionate",
-          "stat": "HP",
-          "skills": [
-            {
-              "name": "Stout Strength",
-              "effect": "Boosts STR based on user's HP."
-            },
-            {
-              "name": "Hustle Cry",
-              "effect": "Extends the duration of buff effects applied by the user's skills by 2 turns."
-            }
-          ]
-        }
-      ],
-      "category_skills": [
-        {
-          "name": "Cheer",
-          "effect": "At the start of battle, boosts ATK and INT for all allies based on the total Bond of all battle members."
-        },
-        {
-          "name": "Prankster",
-          "effect": "Boosts the probability rate of skill debuff effects."
-        }
-      ]
-    }
-  ]
+	"categories": [
+		{
+			"name": "Philanthropy",
+			"stat": "SPI",
+			"personalities": [
+				{
+					"name": "Adoring",
+					"stat": "DEF",
+					"skills": [
+						{
+							"name": "Follow-up",
+							"effect": "Always acts last."
+						},
+						{
+							"name": "Prayer for Aid",
+							"effect": "Slightly recovers HP of all allies at the start of each round."
+						}
+					]
+				},
+				{
+					"name": "Devoted",
+					"stat": "INT",
+					"skills": [
+						{
+							"name": "First Aid",
+							"effect": "Also removes target's injury when using skills to recover an ally's HP."
+						},
+						{
+							"name": "Stout Spirit",
+							"effect": "Boosts SPI based on user's HP."
+						}
+					]
+				},
+				{
+					"name": "Tolerant",
+					"stat": "SP",
+					"skills": [
+						{
+							"name": "Steadfast Heart",
+							"effect": "Boosts DEF when HP is 90% or lower (the lower the HP, more DEF boost)."
+						},
+						{
+							"name": "Rally Blessing",
+							"effect": "Revives with 50% HP when KO'd in battle (once per battle)."
+						}
+					]
+				},
+				{
+					"name": "Overprotective",
+					"stat": "HP",
+					"skills": [
+						{
+							"name": "First in Line",
+							"effect": "Always acts first."
+						},
+						{
+							"name": "Great Embrace",
+							"effect": "Overheals up to 200% of target's MAX HP when using recovery skills."
+						}
+					]
+				}
+			],
+			"category_skills": [
+				{
+					"name": "Healing Wisdom",
+					"effect": "Reduces SP cost for recovery skills by 10%."
+				},
+				{
+					"name": "SP Supplement",
+					"effect": "Also recovers 10% of target’s Max SP when using skills to recover an ally’s HP."
+				}
+			]
+		},
+		{
+			"name": "Valor",
+			"stat": "ATK",
+			"personalities": [
+				{
+					"name": "Zealous",
+					"stat": "SPD",
+					"skills": [
+						{
+							"name": "First in Line",
+							"effect": "Always acts first."
+						},
+						{
+							"name": "Fast Break",
+							"effect": "Boost ATK for the first 3 rounds (the earlier the round, more ATK boost)."
+						}
+					]
+				},
+				{
+					"name": "Brave",
+					"stat": "SP",
+					"skills": [
+						{
+							"name": "Extra Strikes Tech",
+							"effect": "Performs an additional attack when extra strikes is activated."
+						},
+						{
+							"name": "Vitality Theft",
+							"effect": "Recovers HP equal to 10% of physical attack skill damage dealt."
+						}
+					]
+				},
+				{
+					"name": "Reckless",
+					"stat": "HP",
+					"skills": [
+						{
+							"name": "Steadfast Might",
+							"effect": "Boosts ATK when HP is 90% or lower (the lower the HP, more ATK boost)."
+						},
+						{
+							"name": "Counter",
+							"effect": "Chance of countering with an attack when being attacked (better chance with lower HP)."
+						}
+					]
+				},
+				{
+					"name": "Daring",
+					"stat": "DEF",
+					"skills": [
+						{
+							"name": "Stout Defense",
+							"effect": "Boosts DEF based on user's HP."
+						},
+						{
+							"name": "Strategic Order",
+							"effect": "Boosts CRT Rate by 5%."
+						}
+					]
+				}
+			],
+			"category_skills": [
+				{
+					"name": "Warrior Wisdom",
+					"effect": "Reduce SP cost for physical attack skills by 10%."
+				},
+				{
+					"name": "Song of Triumph",
+					"effect": "Slightly boosts CP gained."
+				}
+			]
+		},
+		{
+			"name": "Wisdom",
+			"stat": "INT",
+			"personalities": [
+				{
+					"name": "Enlightened",
+					"stat": "SP",
+					"skills": [
+						{
+							"name": "Intense Focus",
+							"effect": "Boosts INT for the first 3 rounds (the earlier, more INT boost)."
+						},
+						{
+							"name": "Haymaker",
+							"effect": "Boosts CRT damage by 20%."
+						}
+					]
+				},
+				{
+					"name": "Sly",
+					"stat": "HP",
+					"skills": [
+						{
+							"name": "Meditation",
+							"effect": "Boosts INT from round 4 onward (the longer, more INT boost)."
+						},
+						{
+							"name": "Combo Magic",
+							"effect": "Chance to reuse skill when using a magic attack skill (better chance at lower HP)."
+						}
+					]
+				},
+				{
+					"name": "Astute",
+					"stat": "SPD",
+					"skills": [
+						{
+							"name": "Steadfast Emotion",
+							"effect": "Boosts INT when HP is 90% or lower (the lower the HP, the more INT boost)."
+						},
+						{
+							"name": "Magic Theft",
+							"effect": "Recovers SP equal to 10% of magic attack skill damage dealt."
+						}
+					]
+				},
+				{
+					"name": "Strategic",
+					"stat": "SPI",
+					"skills": [
+						{
+							"name": "Follow Up",
+							"effect": "Always acts last."
+						},
+						{
+							"name": "Soothing Song",
+							"effect": "Slightly recovers SP of all allies at the start of each round."
+						}
+					]
+				}
+			],
+			"category_skills": [
+				{
+					"name": "Secret Sage Art",
+					"effect": "Attacking deals magic damage."
+				},
+				{
+					"name": "Magical Wisdom",
+					"effect": "Reduces SP cost for magic attack skills by 10%."
+				}
+			]
+		},
+		{
+			"name": "Amicability",
+			"stat": "DEF",
+			"personalities": [
+				{
+					"name": "Opportunistic",
+					"stat": "SPI",
+					"skills": [
+						{
+							"name": "Slow Started",
+							"effect": "Boosts ATK from round 4 onwards (the longer, more ATK boost)."
+						},
+						{
+							"name": "Planning Ahead",
+							"effect": "At start of battle, reduce DEF and SPI for all enemies greater than total bonds of battle members."
+						}
+					]
+				},
+				{
+					"name": "Friendly",
+					"stat": "ATK",
+					"skills": [
+						{
+							"name": "Strategic Order",
+							"effect": "Boosts CRT Rate by 5%."
+						},
+						{
+							"name": "Fortifying Charge",
+							"effect": "Also boosts all of the target's stats when using skills to recover an ally's HP."
+						}
+					]
+				},
+				{
+					"name": "Sociable",
+					"stat": "SP",
+					"skills": [
+						{
+							"name": "Booing",
+							"effect": "Extends the duration of debuff effects applied by the user's skills by 2 turns."
+						},
+						{
+							"name": "Weak Point Blitz",
+							"effect": "Boost damage dealt by the user when hitting an enemy's weak point after an ally does."
+						}
+					]
+				},
+				{
+					"name": "Compassionate",
+					"stat": "HP",
+					"skills": [
+						{
+							"name": "Stout Strength",
+							"effect": "Boosts STR based on user's HP."
+						},
+						{
+							"name": "Hustle Cry",
+							"effect": "Extends the duration of buff effects applied by the user's skills by 2 turns."
+						}
+					]
+				}
+			],
+			"category_skills": [
+				{
+					"name": "Cheer",
+					"effect": "At the start of battle, boosts ATK and INT for all allies based on the total Bond of all battle members."
+				},
+				{
+					"name": "Prankster",
+					"effect": "Boosts the probability rate of skill debuff effects."
+				}
+			]
+		}
+	]
 }
