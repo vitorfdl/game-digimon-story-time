@@ -7,7 +7,7 @@ const proxyConfig = {
 	"/api/grindosaur": {
 		target: "https://www.grindosaur.com",
 		changeOrigin: true,
-		rewrite: (path) => path.replace(/^\/api\/grindosaur/, ""),
+		rewrite: (path: any) => path.replace(/^\/api\/grindosaur/, ""),
 	},
 } as const;
 

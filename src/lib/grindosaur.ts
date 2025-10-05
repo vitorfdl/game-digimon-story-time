@@ -1,4 +1,4 @@
-import { type Cheerio, type CheerioAPI, type Element, load } from "cheerio";
+import { type Cheerio, type CheerioAPI, load } from "cheerio";
 
 const BASE_HOST = "https://www.grindosaur.com";
 const BASE_PATH = "/en/games/digimon-story-time-stranger";
@@ -276,7 +276,7 @@ function parseQuickFacts($: CheerioAPI) {
 	return quickFacts;
 }
 
-function textFromCell(cell: Cheerio<Element>) {
+function textFromCell(cell: Cheerio<any>) {
 	return cell.text().replace(/\s+/g, " ").trim();
 }
 
@@ -294,7 +294,8 @@ function parseConditionsTable($: CheerioAPI): EvolutionConditionRow[] {
 
 	return table
 		.find("tbody tr")
-		.map((_, row) => {
+		.toArray()
+		.map((row) => {
 			const cells = $(row).find("td");
 			if (!cells.length) return null;
 
@@ -306,7 +307,6 @@ function parseConditionsTable($: CheerioAPI): EvolutionConditionRow[] {
 
 			return entry;
 		})
-		.get()
 		.filter(Boolean) as EvolutionConditionRow[];
 }
 
@@ -331,7 +331,6 @@ function parseEvolutionSection(
 			const entry: DigimonEvolutionEntry = {
 				name: "",
 				slug: null,
-				url: null,
 				icon: null,
 				generation: null,
 				attribute: null,
@@ -353,7 +352,6 @@ function parseEvolutionSection(
 							const link = cellEl.find("a").first();
 							const href = ensureAbsoluteUrl(link.attr("href"));
 							entry.name = link.text().trim() || cellEl.text().trim();
-							entry.url = href;
 							entry.slug = href ? extractSlug(href) : slugFromName(entry.name);
 							break;
 						}
@@ -491,7 +489,7 @@ function fallbackNameFromSlug(slug: string) {
 function resolveDigimonIcon($: CheerioAPI, name: string | null, slug: string) {
 	const sluggedIcon = $("img").filter((_, img) => {
 		const src = $(img).attr("src");
-		return src?.includes(`/${slug}-icon`);
+		return src?.includes(`/${slug}-icon`) ?? false;
 	});
 
 	if (sluggedIcon.length) {

@@ -1,4 +1,4 @@
-import { Github, History, Swords, Users } from "lucide-react";
+import { Github, Swords, Users } from "lucide-react";
 import { Suspense } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import NavbarSearch from "@/components/navigation/NavbarSearch";
