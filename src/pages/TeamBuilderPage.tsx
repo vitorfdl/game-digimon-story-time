@@ -2,9 +2,8 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { Suspense } from "react";
 import { AddDigimonButton } from "@/components/team-builder/AddDigimonButton";
-import { TeamBuilderBoard } from "@/components/team-builder/TeamBuilderBoard";
+import { TeamBuilderBoard, TeamSlotSkeleton } from "@/components/team-builder/TeamBuilderBoard";
 import { TeamImportExportControls } from "@/components/team-builder/TeamImportExportControls";
-import { Skeleton } from "@/components/ui/skeleton";
 import { digimonListAtom } from "@/store/atoms";
 import {
 	activeTeamSlotIdAtom,
@@ -95,13 +94,12 @@ function TeamBuilderContent() {
 
 function TeamBuilderFallback() {
 	return (
-		<div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-2 pb-10">
+		<div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-2 pb-10">
 			<div className="grid gap-4">
 				{Array.from({ length: 3 }).map((_, index) => (
-					<Skeleton
-						key={index}
-						className="h-64 rounded-3xl border border-border/50"
-					/>
+					<div key={index} className="animate-pulse">
+						<TeamSlotSkeleton />
+					</div>
 				))}
 			</div>
 		</div>
