@@ -75,7 +75,11 @@ function resolveRequestUrl(path: string): string {
 	}
 
 	if (typeof window !== "undefined") {
-		return `${PROXY_PREFIX}${normalizedPath}`;
+		const { hostname } = window.location;
+		const isLocalhost = ["localhost", "127.0.0.1", "0.0.0.0"].includes(hostname);
+		if (isLocalhost) {
+			return `${PROXY_PREFIX}${normalizedPath}`;
+		}
 	}
 
 	return `${BASE_HOST}${normalizedPath}`;
