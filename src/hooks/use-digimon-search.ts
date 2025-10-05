@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { type DigimonSummary } from "@/lib/grindosaur";
+import type { DigimonSummary } from "@/lib/grindosaur";
 
 type UseDigimonSearchOptions = {
 	limit?: number;

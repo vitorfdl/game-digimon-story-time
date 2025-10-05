@@ -1,4 +1,4 @@
-import { load, type Cheerio, type CheerioAPI, type Element } from "cheerio";
+import { type Cheerio, type CheerioAPI, type Element, load } from "cheerio";
 
 const BASE_HOST = "https://www.grindosaur.com";
 const BASE_PATH = "/en/games/digimon-story-time-stranger";

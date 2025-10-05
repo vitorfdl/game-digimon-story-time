@@ -2,10 +2,10 @@ import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 
 import {
-	fetchDigimonDetails,
-	fetchDigimonList,
 	type DigimonDetails,
 	type DigimonSummary,
+	fetchDigimonDetails,
+	fetchDigimonList,
 } from "@/lib/grindosaur";
 
 // Controls whether the mobile footer on Residents is expanded

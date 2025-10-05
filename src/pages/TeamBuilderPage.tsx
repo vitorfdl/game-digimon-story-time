@@ -1,18 +1,17 @@
-import { Suspense } from "react";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { arrayMove } from "@dnd-kit/sortable";
-
-import { Skeleton } from "@/components/ui/skeleton";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { Suspense } from "react";
 import { AddDigimonButton } from "@/components/team-builder/AddDigimonButton";
 import { TeamBuilderBoard } from "@/components/team-builder/TeamBuilderBoard";
 import { TeamImportExportControls } from "@/components/team-builder/TeamImportExportControls";
+import { Skeleton } from "@/components/ui/skeleton";
+import { digimonListAtom } from "@/store/atoms";
 import {
 	activeTeamSlotIdAtom,
 	createTeamSlot,
-	teamSlotsAtom,
 	type TeamSlot,
+	teamSlotsAtom,
 } from "@/store/team-builder-atoms";
-import { digimonListAtom } from "@/store/atoms";
 
 export default function TeamBuilderPage() {
 	return (

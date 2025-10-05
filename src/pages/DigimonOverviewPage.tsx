@@ -1,5 +1,5 @@
-import { Suspense } from "react";
 import { useAtomValue } from "jotai";
+import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 
 import DigimonOverview from "@/components/digimon/DigimonOverview";

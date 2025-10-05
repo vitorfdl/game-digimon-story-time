@@ -1,4 +1,4 @@
-import { fetchDigimonDetails, fetchDigimonList } from "./lib/grindosaur";
+import { fetchDigimonDetails } from "./lib/grindosaur";
 
 fetchDigimonDetails("birdramon").then((digimonList) => {
 	console.log(digimonList);

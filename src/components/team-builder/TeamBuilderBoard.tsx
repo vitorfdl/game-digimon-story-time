@@ -71,7 +71,7 @@ export function TeamBuilderBoard({
 	);
 }
 
-function TeamSlotSkeleton() {
+export function TeamSlotSkeleton() {
 	return (
 		<Card className="relative overflow-hidden border border-border/50 bg-card/50 backdrop-blur">
 			<CardContent className="flex flex-col gap-2">

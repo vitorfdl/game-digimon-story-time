@@ -1,12 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
 import { Loader2 } from "lucide-react";
-
-import { cn } from "@/lib/utils";
+import { useEffect, useMemo, useState } from "react";
 import { resolveAttributeIcon } from "@/lib/digimon";
 import {
-	fetchDigimonDetails,
 	type DigimonEvolutionEntry,
+	fetchDigimonDetails,
 } from "@/lib/grindosaur";
+import { cn } from "@/lib/utils";
 
 export type EvolutionDirection = "forward" | "back";
 

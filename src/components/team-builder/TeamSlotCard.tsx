@@ -7,6 +7,14 @@ import { useEffect, useMemo, useState } from "react";
 import { EvolutionOptionCard } from "@/components/digimon/EvolutionOptionCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog";
 import { useDigimonDetails } from "@/hooks/use-digimon-details";
 import {
 	getPersonalities,
@@ -18,14 +26,6 @@ import {
 	type SelectedSkill,
 	type TeamSlot,
 } from "@/store/team-builder-atoms";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-} from "@/components/ui/dialog";
 
 import { PersonalitySkillSelector } from "./personality-selector";
 import { TeamFormPill } from "./team-form-pill";

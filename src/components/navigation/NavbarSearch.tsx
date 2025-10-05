@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
 import { useAtomValue } from "jotai";
+import { Loader2, Search } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useMatch, useNavigate } from "react-router-dom";
-import { Search, Loader2 } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
-import { digimonListAtom } from "@/store/atoms";
-import { cn } from "@/lib/utils";
 import { useDigimonSearch } from "@/hooks/use-digimon-search";
+import { cn } from "@/lib/utils";
+import { digimonListAtom } from "@/store/atoms";
 
 type HighlightDirection = "up" | "down";
 

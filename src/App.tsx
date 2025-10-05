@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AppLayout from "@/components/layout/AppLayout";
 import DigimonOverviewPage from "@/pages/DigimonOverviewPage";
 import TeamBuilderPage from "@/pages/TeamBuilderPage";

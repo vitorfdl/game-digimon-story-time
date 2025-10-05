@@ -1,10 +1,13 @@
-import { useEffect, useMemo } from "react";
 import { useAtomValue } from "jotai";
-import { useNavigate } from "react-router-dom";
 import { Flame } from "lucide-react";
-
-import { digimonListAtom, digimonDetailsAtomFamily } from "@/store/atoms";
+import { useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+	type EvolutionDirection,
+	EvolutionOptionCard,
+} from "@/components/digimon/EvolutionOptionCard";
 import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
 	Table,
 	TableBody,
@@ -13,18 +16,14 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
-import {
-	fetchDigimonDetails,
-	type DigimonEvolutionEntry,
-	type DigimonSummary,
-} from "@/lib/grindosaur";
 import { resolveAttributeIcon } from "@/lib/digimon";
-import {
-	EvolutionOptionCard,
-	type EvolutionDirection,
-} from "@/components/digimon/EvolutionOptionCard";
+import type {
+	DigimonEvolutionEntry,
+	DigimonSummary,
+	fetchDigimonDetails,
+} from "@/lib/grindosaur";
+import { cn } from "@/lib/utils";
+import { digimonDetailsAtomFamily, digimonListAtom } from "@/store/atoms";
 
 const BASE_DOCUMENT_TITLE = "Digimon Time Stranger";
 

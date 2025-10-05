@@ -1,7 +1,7 @@
 import dataIconUrl from "@/assets/digimon-types/data-icon.png";
-import virusIconUrl from "@/assets/digimon-types/virus-icon.png";
-import vaccineIconUrl from "@/assets/digimon-types/vaccine-icon.png";
 import othersIconUrl from "@/assets/digimon-types/others-icon.png";
+import vaccineIconUrl from "@/assets/digimon-types/vaccine-icon.png";
+import virusIconUrl from "@/assets/digimon-types/virus-icon.png";
 
 /**
  * Resolve the attribute icon for a Digimon attribute string.
