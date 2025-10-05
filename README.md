@@ -1,63 +1,89 @@
-# SoS: Grand Bazaar – Player Guides (React + Tailwind + shadcn/ui)
+# Digimon Time Stranger Guide & Team Builder
 
-A beautiful, fast, and searchable set of consulting guides for Story of Seasons: Grand Bazaar. This app focuses on practical, in-game reference: residents’ preferences, festivals and birthdays by season/year, and detailed windmill recipes/upgrades.
+A responsive companion app for **Digimon Time Stranger** that helps players research Digimon data, plan evolution paths, and assemble squads on any device. All game info is fetched on demand from [Grindosaur](https://www.grindosaur.com/en/games/digimon-story-time-stranger/digimon/), parsed with Cheerio, and rendered with modern React tooling.
 
-This project was made entirely by AI, and can have issues that were not detected by me.
-
-The data is intentionally isolated under `src/data` so that fixing or expanding information is simple and low-risk.
-
-<img width="2388" height="1444" alt="image" src="https://github.com/user-attachments/assets/02578e29-b801-4148-921a-8854c566eb7c" />
+![Team Builder screenshot](https://github.com/user-attachments/assets/02578e29-b801-4148-921a-8854c566eb7c)
 
 ---
 
-## Quick start
+## Highlights
+
+- 🔍 **Global search** across every Digimon via the Lucene-like navbar search.
+- 📋 **Reference sheets**: evolution requirements, attribute stats, personalities, and skills in a clean shadcn/ui layout.
+- 🧩 **Team Builder** with drag-and-drop ordering, inline personality/skill selection, evolution path previews, and local-storage persistence.
+- 🔁 **Import/Export** your squads as JSON to share or restore later.
+- 🌗 **Fully responsive** design tuned for touch navigation and dark theme aesthetics.
+
+---
+
+## Tech Stack
+
+- **React + Vite** (TypeScript)
+- **Tailwind CSS v4** with custom shadcn/ui theme tokens
+- **shadcn/ui** component primitives
+- **Jotai** for state management with localStorage persistence
+- **dnd-kit** for drag-and-drop interactions
+- **Cheerio** + custom fetchers for Grindosaur scraping
+
+---
+
+## Getting Started
 
 ```bash
-# Install (pnpm recommended)
-pnpm i
-
-# Start dev server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Preview the production build
-pnpm preview
+pnpm install       # install dependencies
+pnpm dev           # start Vite dev server
+pnpm build         # create production build
+pnpm preview       # preview production bundle
 ```
 
-Dev server will print the local URL. The app is a single-page application powered by Vite + React Router.
+The dev server prints a local URL (default http://localhost:5173). The app is a single-page application; routing lives in `App.tsx`.
 
+---
 
-## Project layout
+## Project Structure
 
 ```
 src/
+  assets/                 # static assets (icons, personalities data)
   components/
-    layout/AppLayout.tsx   # App chrome + sidebar navigation
-    any.tsx                # Any other component
-    ui/                    # shadcn/ui primitives (local)
-  data/
-    any.ts                  # Any other data
-    types.ts               # Shared domain types
-  hooks/
-    use-mobile.ts          # Small responsive helpers (if needed)
-  lib/
-    utils.ts               # `withBase`, `cn`, misc helpers
-  index.css                # Tailwind v4 + theme tokens (shadcn-compatible)
-  App.tsx                  # Routes
-  main.tsx                 # App bootstrap
+    layout/AppLayout.tsx  # shell + sidebar navigation
+    navigation/           # navbar search, sidebar controls
+    digimon/              # shared Digimon presentation components
+    team-builder/         # cards, selectors, DnD board
+    ui/                   # local shadcn/ui primitives
+  hooks/                  # data fetching and UI hooks
+  lib/                    # API clients, helpers, type guards
+  pages/                  # routed pages (team builder, overview)
+  store/                  # jotai atoms for global state
+  App.tsx                 # top-level routes inside AppLayout
+  main.tsx                # application bootstrap
+  index.css               # Tailwind config + theme tokens
 ```
 
-- Pages are routed in `src/App.tsx` and rendered within `src/components/layout/AppLayout.tsx`.
-- All player-facing data lives in `src/data`.
+Key atoms in `src/store/team-builder-atoms.ts` handle persistence using `atomWithStorage`, keeping the current team across sessions.
 
 ---
 
-## Notes & assumptions
+## Data Flow
 
-- The calendar implements weekday shifting across seasons/years based on a 31‑day season length and observed in‑game screenshots.
-- Missing images gracefully fall back to the Vite logo.
+1. Pages call `useDigimonDetails` or list hooks, which fetch from Grindosaur and transform the HTML payload with Cheerio.
+2. Parsed data is cached in-memory, then rendered by shadcn/ui components.
+3. Team Builder changes are mirrored into localStorage so refreshes retain your squad.
+
+---
+
+## Import / Export
+
+- **Export:** Open the floating controls, choose the download icon, and copy the JSON blob.
+- **Import:** Open the upload icon, paste a previously exported JSON payload, and confirm. Sanitisation guards against malformed data while preserving existing IDs when possible.
+
+---
+
+## Testing & Quality
+
+- TypeScript strictness (`tsconfig.*`) keeps data contracts honest.
+- UI polish leans on Tailwind utility classes; prefer extending shared components before duplicating layouts.
+- When adding new features, co-locate state atoms or hooks to stay DRY, and reuse existing cards/pills where possible.
 
 ---
 

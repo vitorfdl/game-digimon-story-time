@@ -13,8 +13,8 @@ const proxyConfig = {
 
 // https://vite.dev/config/
 export default defineConfig({
-	// Base path for GitHub Pages under /game-help-sos-grand-bazaar/
-	base: "/game-help-sos-grand-bazaar/",
+	// Base path for GitHub Pages under /game-digimon-story-time/
+	base: "/game-digimon-story-time/",
 	plugins: [react(), tailwindcss()],
 	resolve: {
 		alias: {
