@@ -1,12 +1,13 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useAtom } from "jotai";
-import { ChevronsRight, GripVertical, Trash2 } from "lucide-react";
+import { ShieldCheck, Sparkles, ChevronsRight, GripVertical, Trash2 } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { EvolutionOptionCard } from "@/components/digimon/EvolutionOptionCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
 	Dialog,
 	DialogContent,
@@ -34,9 +35,15 @@ type TeamSlotCardProps = {
 	slot: TeamSlot;
 	onUpdate: (next: TeamSlot) => void;
 	onRemove: () => void;
+	sectionLabel?: "Combat" | "Reserve";
 };
 
-export function TeamSlotCard({ slot, onUpdate, onRemove }: TeamSlotCardProps) {
+export function TeamSlotCard({
+	slot,
+	onUpdate,
+	onRemove,
+	sectionLabel,
+}: TeamSlotCardProps) {
 	const [activeCardId, setActiveCardId] = useAtom(activeTeamSlotIdAtom);
 	const [focusedIndex, setFocusedIndex] = useState(-1);
 	const [confirmOpen, setConfirmOpen] = useState(false);
@@ -115,16 +122,46 @@ export function TeamSlotCard({ slot, onUpdate, onRemove }: TeamSlotCardProps) {
 				ref={setNodeRef}
 				style={style}
 				className={cn(
-					"relative overflow-hidden border border-border/50 bg-card/70 backdrop-blur transition-shadow",
-					isDragging
-						? "shadow-2xl"
-						: "shadow-[0_32px_80px_-70px_theme(colors.primary/80%)]",
-				)}
-				onClick={() => setActiveCardId(slot.id)}
-			>
-				<CardContent className="flex flex-col gap-2">
-					<div className="flex flex-wrap items-start gap-3">
-						<button
+		"relative overflow-hidden border border-border/50 bg-card/70 backdrop-blur transition-shadow",
+		isDragging
+			? "shadow-2xl"
+			: "shadow-[0_32px_80px_-70px_theme(colors.primary/80%)]",
+		sectionLabel
+			? "before:absolute before:inset-0 before:-z-10 before:content-['']"
+			: "",
+		sectionLabel === "Combat"
+			? "border-primary/50 before:bg-[linear-gradient(135deg,rgba(120,80,250,0.18),transparent_60%)]"
+			: "",
+		sectionLabel === "Reserve"
+			? "border-sky-400/40 before:bg-[linear-gradient(135deg,rgba(56,189,248,0.16),transparent_55%)]"
+			: "",
+	)}
+	onClick={() => setActiveCardId(slot.id)}
+>
+		<CardContent className="flex flex-col gap-2">
+			{sectionLabel ? (
+				<div className="flex items-center justify-between">
+					<Badge
+						variant="secondary"
+						className={cn(
+							"flex items-center gap-2 rounded-2xl px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em]",
+							sectionLabel === "Combat"
+								? "bg-primary/15 text-primary"
+								: "bg-sky-500/10 text-sky-500",
+						)}
+					>
+						{sectionLabel === "Combat" ? (
+							<ShieldCheck className="size-3.5" />
+						) : (
+							<Sparkles className="size-3.5" />
+						)}
+						{sectionLabel}
+					</Badge>
+				</div>
+			) : null}
+
+			<div className="flex flex-wrap items-start gap-3">
+				<button
 							type="button"
 							className="flex size-9 items-center justify-center rounded-full border border-border/70 bg-background/90 text-muted-foreground transition hover:border-primary/60 hover:text-primary"
 							{...attributes}

@@ -31,9 +31,7 @@ A responsive companion app for **Digimon Time Stranger** that helps players rese
 
 ```bash
 pnpm install       # install dependencies
-pnpm dev           # start Vite dev server
-pnpm build         # create production build
-pnpm preview       # preview production bundle
+pnpm start           # start Vite dev server
 ```
 
 The dev server prints a local URL (default http://localhost:5173). The app is a single-page application; routing lives in `App.tsx`.

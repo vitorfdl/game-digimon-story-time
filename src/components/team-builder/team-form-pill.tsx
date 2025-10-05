@@ -62,21 +62,30 @@ export function TeamFormPill({
 			onFocus={() => setOpen(true)}
 			onBlur={() => setOpen(false)}
 		>
-			<div
-				className={cn(
-					"flex items-center gap-2 rounded-full border border-border/50 bg-background/60 px-3 py-1.5 shadow-sm transition",
-					isActive
-						? "border-primary/70 bg-primary/15 shadow-md"
-						: "hover:border-primary/60 hover:bg-primary/10",
-				)}
-			>
-				<button
-					type="button"
-					onClick={onSelect}
-					className="flex items-center gap-2"
+				<div
+					className={cn(
+						"flex items-center gap-2 rounded-full border border-border/50 bg-background/60 px-3 py-1.5 shadow-sm transition",
+						isActive
+							? "border-primary/70 bg-primary/15 shadow-md"
+							: "hover:border-primary/60 hover:bg-primary/10",
+					)}
 				>
-					{details.icon ? (
-						<img
+					<button
+						type="button"
+						onClick={(event) => {
+							if (event.metaKey || event.ctrlKey) {
+								event.preventDefault();
+								event.stopPropagation();
+								const targetUrl = `${window.location.origin}/digimon/${slug}`;
+								window.open(targetUrl, "_blank", "noopener,noreferrer");
+								return;
+							}
+							onSelect();
+						}}
+						className="flex items-center gap-2"
+					>
+						{details.icon ? (
+							<img
 							src={details.icon}
 							alt=""
 							className="size-10 rounded-full border border-border/50 bg-card/80 object-contain p-1"
@@ -98,10 +107,10 @@ export function TeamFormPill({
 						</span>
 					</span>
 				</button>
-				{!isBase ? (
-					<Button
-						type="button"
-						variant="ghost"
+					{!isBase ? (
+						<Button
+							type="button"
+							variant="ghost"
 						size="icon"
 						onClick={onRemove}
 						className="size-6 text-muted-foreground hover:text-destructive"

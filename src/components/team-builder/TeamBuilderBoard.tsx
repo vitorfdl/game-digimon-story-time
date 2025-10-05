@@ -56,15 +56,21 @@ export function TeamBuilderBoard({
 		>
 			<SortableContext items={ids} strategy={verticalListSortingStrategy}>
 				<div className="grid gap-4">
-					{slots.map((slot) => (
-						<Suspense key={slot.id} fallback={<TeamSlotSkeleton />}>
-							<TeamSlotCard
-								slot={slot}
-								onUpdate={onUpdate}
-								onRemove={() => onRemove(slot.id)}
-							/>
-						</Suspense>
-					))}
+					{slots.map((slot, index) => {
+						const sectionLabel =
+							index < 3 ? "Combat" : index < 6 ? "Reserve" : undefined;
+
+						return (
+							<Suspense key={slot.id} fallback={<TeamSlotSkeleton />}>
+								<TeamSlotCard
+									slot={slot}
+									onUpdate={onUpdate}
+									onRemove={() => onRemove(slot.id)}
+									sectionLabel={sectionLabel}
+								/>
+							</Suspense>
+						);
+					})}
 				</div>
 			</SortableContext>
 		</DndContext>
